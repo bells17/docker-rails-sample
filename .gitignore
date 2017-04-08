@@ -16,5 +16,9 @@
 # Ignore Byebug command history file.
 .byebug_history
 
+# docker
 /.docker/mysql/volumes/*
 !/.docker/mysql/volumes/.gitkeep
+
+/.docker/redis/volumes/*
+!/.docker/redis/volumes/.gitkeep
