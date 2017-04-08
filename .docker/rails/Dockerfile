@@ -1,14 +1,22 @@
-FROM ruby:2.3.4
+FROM usualoma/ruby-with-therubyracer:2.4.0-alpine
 ENV LANG C.UTF-8
-RUN apt-get update -qq && \
-    apt-get install -y build-essential \
-                        mysql-client
+
+RUN apk update && \
+    apk upgrade && \
+    apk add --update \
+            bash \
+            make \
+            g++ \
+            mysql-dev \
+            openssh \
+            tzdata \
+            zlib-dev
+
+WORKDIR /tmp
+ADD ./Gemfile Gemfile
+ADD ./Gemfile.lock Gemfile.lock
+RUN bundle install
 
 ENV APP_HOME /app
-RUN mkdir $APP_HOME
-
 WORKDIR $APP_HOME
-ADD Gemfile $APP_HOME/Gemfile
-ADD Gemfile.lock $APP_HOME/Gemfile.lock
-RUN bundle install
 ADD . $APP_HOME
