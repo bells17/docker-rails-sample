@@ -4,12 +4,14 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
+    session[:sample] = 1
     @items = Item.all
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
+    puts "aaaaaaaaaa: #{session[:sample]}"
   end
 
   # GET /items/new

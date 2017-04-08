@@ -2,9 +2,8 @@ FROM usualoma/ruby-with-therubyracer:2.4.0-alpine
 ENV LANG C.UTF-8
 
 RUN apk update && \
-    apk upgrade && \
-    apk add --update \
-            bash \
+    apk upgrade
+RUN apk add bash \
             make \
             g++ \
             mysql-dev \
