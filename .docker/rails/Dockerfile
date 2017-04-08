@@ -12,8 +12,7 @@ RUN apk add bash \
             zlib-dev
 
 WORKDIR /tmp
-ADD ./Gemfile Gemfile
-ADD ./Gemfile.lock Gemfile.lock
+COPY Gemfile* /tmp/
 RUN bundle install
 
 ENV APP_HOME /app
