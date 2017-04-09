@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-    puts "aaaaaaaaaa: #{session[:sample]}"
+    @session_sample = session[:sample]
   end
 
   # GET /items/new

@@ -29,10 +29,10 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 3.0'
+gem 'redis-rails', ' ~> 5.0.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-gem 'redis-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -40,6 +40,14 @@ gem 'redis-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+
+  # test library
+  gem 'minitest', '~> 5.10.1'
+  gem 'minitest-rails', '~> 3.0.0'
+  gem 'minitest-rails-capybara', '~> 3.0.1'
+  gem 'minitest-documentation', '~> 1.0.0'
+  gem 'minitest-power_assert', '~> 0.2.0'
+  gem 'rails-controller-testing', require: false
 end
 
 group :development do

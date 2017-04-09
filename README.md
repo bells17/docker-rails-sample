@@ -18,3 +18,9 @@ docker-compose up -d
 mysql -h 0.0.0.0 -uroot -p
 redis-cli -h 0.0.0.0
 ```
+
+## Run Test
+
+```
+docker-compose run web bundle exec rails test
+```

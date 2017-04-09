@@ -1,7 +1,9 @@
-require 'test_helper'
+require "test_helper"
 
-class ItemTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+describe Item do
+  let(:item) { Item.new }
+
+  it "must be valid" do
+    value(item).must_be :valid?
+  end
 end
