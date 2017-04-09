@@ -1,48 +1,49 @@
-require 'test_helper'
+require "test_helper"
 
-class ItemsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @item = items(:one)
+describe ItemsController do
+  let(:item) { items :one }
+
+  it "gets index" do
+    get :index
+    value(response).must_be :success?
+    assert { session[:sample] == 1 }
   end
 
-  test "should get index" do
-    get items_url
-    assert_response :success
+  it "gets new" do
+    get :new
+    value(response).must_be :success?
   end
 
-  test "should get new" do
-    get new_item_url
-    assert_response :success
+  it "creates item" do
+    expect {
+      post :create, params: { item: { amount: item.amount, memo: item.memo, name: item.name } }
+    }.must_change "Item.count"
+
+    must_redirect_to item_path(Item.last)
   end
 
-  test "should create item" do
-    assert_difference('Item.count') do
-      post items_url, params: { item: { amount: @item.amount, memo: @item.memo, name: @item.name } }
-    end
-
-    assert_redirected_to item_url(Item.last)
+  it "shows item" do
+    session[:sample] = 'test'
+    get :show, params: { id: item.id }
+    value(response).must_be :success?
+    assert { assigns[:session_sample] == 'test' }
   end
 
-  test "should show item" do
-    get item_url(@item)
-    assert_response :success
+  it "gets edit" do
+    get :edit, params: { id: item.id }
+    value(response).must_be :success?
   end
 
-  test "should get edit" do
-    get edit_item_url(@item)
-    assert_response :success
+  it "updates item" do
+    patch :update, params: { id: item.id, item: { amount: item.amount, memo: item.memo, name: item.name } }
+    must_redirect_to item_path(item)
   end
 
-  test "should update item" do
-    patch item_url(@item), params: { item: { amount: @item.amount, memo: @item.memo, name: @item.name } }
-    assert_redirected_to item_url(@item)
-  end
+  it "destroys item" do
+    expect {
+      delete :destroy, params: { id: item.id }
+    }.must_change "Item.count", -1
 
-  test "should destroy item" do
-    assert_difference('Item.count', -1) do
-      delete item_url(@item)
-    end
-
-    assert_redirected_to items_url
+    must_redirect_to items_path
   end
 end

@@ -40,6 +40,14 @@ gem 'redis-rails', ' ~> 5.0.2'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+
+  # test library
+  gem 'minitest', '~> 5.10.1'
+  gem 'minitest-rails', '~> 3.0.0'
+  gem 'minitest-rails-capybara', '~> 3.0.1'
+  gem 'minitest-documentation', '~> 1.0.0'
+  gem 'minitest-power_assert', '~> 0.2.0'
+  gem 'rails-controller-testing', require: false
 end
 
 group :development do
